@@ -10,7 +10,15 @@ import UIKit
 class AnimalTableDataSource: UITableViewDiffableDataSource<String, String> {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        self.snapshot().sectionIdentifiers[section]
+        snapshot().sectionIdentifiers[section]
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        snapshot().sectionIdentifiers
+    }
+    
+    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        index
     }
     
 }
