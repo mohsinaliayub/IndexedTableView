@@ -11,10 +11,16 @@ class AnimalsTableViewController: UITableViewController {
 
     let animals = ["Bear", "Black Swan", "Buffalo", "Camel", "Cockatoo", "Dog", "Donkey", "Emu", "Giraffe", "Greater Rhea", "Hippopotamus", "Horse", "Koala", "Lion", "Llama", "Manatus", "Meerkat", "Panda", "Peacock", "Pig", "Platypus", "Polar Bear", "Rhinoceros", "Seagull", "Tasmania Devil", "Whale", "Whale Shark", "Wombat"]
     
+    var animalsDict = [String: [String]]()
+    var animalSectionTitles = [String]()
+    
     lazy var dataSource = configureDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Generate the animals dictionary.
+        createAnimalDict()
         
         // populate data
         tableView.dataSource = dataSource
@@ -22,12 +28,32 @@ class AnimalsTableViewController: UITableViewController {
     }
 
 
+    private func createAnimalDict() {
+        for animal in animals {
+            // get the first letter of the animal name and build the dictionary
+            let firstLetterIndex = animal.index(animal.startIndex, offsetBy: 1)
+            let animalKey = String(animal[..<firstLetterIndex])
+            
+            // if there are items under the animalKey already, append animal to array
+            // otherwise create a new key and value pair with animal as value
+            if var animalValues = animalsDict[animalKey] {
+                animalValues.append(animal)
+                animalsDict[animalKey] = animalValues
+            } else {
+                animalsDict[animalKey] = [animal]
+            }
+        }
+        
+        // Get the section titles from dictionary's keys and sort them in ascending order
+        animalSectionTitles = [String](animalsDict.keys)
+        animalSectionTitles.sort { $0 < $1 }
+    }
 }
 
 extension AnimalsTableViewController {
     
     func configureDataSource() -> UITableViewDiffableDataSource<String, String> {
-        let dataSource = UITableViewDiffableDataSource<String, String>(tableView: tableView) { tableView, indexPath, animalName in
+        let dataSource = AnimalTableDataSource(tableView: tableView) { tableView, indexPath, animalName in
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             
@@ -46,10 +72,14 @@ extension AnimalsTableViewController {
     }
     
     func updateSnapshot(animated: Bool = false) {
-        // create a snapshot and apply the data
+        // create a snapshot, add items to corresponding sections and apply the data
         var snapshot = NSDiffableDataSourceSnapshot<String, String>()
-        snapshot.appendSections(["all"])
-        snapshot.appendItems(animals, toSection: "all")
+        snapshot.appendSections(animalSectionTitles)
+        animalSectionTitles.forEach { section in
+            if let animals = animalsDict[section] {
+                snapshot.appendItems(animals, toSection: section)
+            }
+        }
         
         dataSource.apply(snapshot)
     }

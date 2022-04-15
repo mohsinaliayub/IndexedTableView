@@ -13,6 +13,7 @@
 		42A91F742809783A00182CBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42A91F722809783A00182CBF /* Main.storyboard */; };
 		42A91F762809783C00182CBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42A91F752809783C00182CBF /* Assets.xcassets */; };
 		42A91F792809783C00182CBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42A91F772809783C00182CBF /* LaunchScreen.storyboard */; };
+		42A91F8128097EC500182CBF /* AnimalTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A91F8028097EC500182CBF /* AnimalTableDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		42A91F752809783C00182CBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42A91F782809783C00182CBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42A91F7A2809783C00182CBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42A91F8028097EC500182CBF /* AnimalTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalTableDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				42A91F752809783C00182CBF /* Assets.xcassets */,
 				42A91F772809783C00182CBF /* LaunchScreen.storyboard */,
 				42A91F7A2809783C00182CBF /* Info.plist */,
+				42A91F8028097EC500182CBF /* AnimalTableDataSource.swift */,
 			);
 			path = IndexedTableView;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				42A91F712809783A00182CBF /* AnimalsTableViewController.swift in Sources */,
 				42A91F6D2809783A00182CBF /* AppDelegate.swift in Sources */,
 				42A91F6F2809783A00182CBF /* SceneDelegate.swift in Sources */,
+				42A91F8128097EC500182CBF /* AnimalTableDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
