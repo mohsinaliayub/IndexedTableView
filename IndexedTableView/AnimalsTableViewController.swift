@@ -84,5 +84,20 @@ extension AnimalsTableViewController {
         dataSource.apply(snapshot)
     }
     
+    
+    // MARK: UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        50
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headerView = view as! UITableViewHeaderFooterView
+        headerView.backgroundView?.backgroundColor = UIColor(red: 236.0/255.0, green: 240.0/255.0, blue: 241.0/255.0, alpha: 1.0)
+        headerView.textLabel?.textColor = UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
+        
+        headerView.textLabel?.font = UIFont(name: "Avenir", size: 25.0)
+    }
+    
 }
 
